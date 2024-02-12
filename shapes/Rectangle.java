@@ -28,7 +28,7 @@ public class Rectangle extends Shape {
         this(x,y,1,1);
     }
 
-    private List<Point> getCorners(){
+    protected java.util.List<Point> getCorners(){
         // DIT952.polygons.Rectangle has four corners
         List<Point> corners = new ArrayList<>(4);
 
@@ -56,17 +56,5 @@ public class Rectangle extends Shape {
         return corners;
     }
 
-    public void paint(Graphics g){
-        List<Point> corners = getCorners();
-        // first and last point should be the same
-        corners.add(corners.get(0));
-        Point from = null;
-        for (Point to : corners){
-            if (from != null){
-                g.drawLine(from.x, from.y, to.x, to.y);
-            }
-            from = to;
-        }
-
-    }
+    
 }

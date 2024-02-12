@@ -49,6 +49,21 @@ public abstract class Shape extends JComponent {
         this.rotation = rotation + angle;
     }
 
-    public abstract void paint(Graphics g);
+    protected abstract java.util.List<Point> getCorners();
+
+
+    public void paint(Graphics g){ //same in Rectangle and Triangle
+        java.util.List<Point> corners = getCorners();
+        // first and last point should be the same
+        corners.add(corners.get(0));
+        Point from = null;
+        for (Point to : corners){
+            if (from != null){
+                g.drawLine(from.x, from.y, to.x, to.y);
+            }
+            from = to;
+        }
+
+    }
 
 }
